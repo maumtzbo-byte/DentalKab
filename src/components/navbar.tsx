@@ -5,11 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS: { label: string; to: string }[] = [
-  { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
-  { label: "About", to: "/#about" },
-  { label: "Gallery", to: "/#gallery" },
-  { label: "Contact", to: "/#contact" },
+  { label: "Inicio", to: "/" },
+  { label: "Servicios", to: "/services" },
+  { label: "Nosotros", to: "/#about" },
+  { label: "Galería", to: "/#gallery" },
+  { label: "Contacto", to: "/#contact" },
 ];
 
 export function Navbar() {
@@ -38,7 +38,7 @@ export function Navbar() {
             Kab
           </span>
           <span className="text-[8px] md:text-[9px] font-medium leading-none mt-1.5 md:mt-2 text-ink-700">
-            quality healthcare
+            atención de calidad
           </span>
         </Link>
 
@@ -48,15 +48,15 @@ export function Navbar() {
             onClick={() => setMenuOpen((open) => !open)}
             className="px-6 py-3 bg-cream rounded-full border border-ochre text-sm font-semibold text-ink-900 hover:bg-ink-900 hover:text-cream hover:border-ink-900 transition-colors duration-200"
           >
-            Menu
+            Menú
           </button>
-          <span className="text-sm font-semibold text-ink-900">Dental Emergency</span>
+          <span className="text-sm font-semibold text-ink-900">Urgencia Dental</span>
         </div>
 
         <button
           type="button"
           className="md:hidden w-10 h-10 flex items-center justify-center relative"
-          aria-label="Toggle menu"
+          aria-label="Abrir menú"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <span
@@ -110,12 +110,12 @@ export function Navbar() {
                 transitionDelay: menuOpen ? "450ms" : "0ms",
               }}
             >
-              <p className="text-sm font-semibold text-ink-900 mb-4">Dental Emergency</p>
+              <p className="text-sm font-semibold text-ink-900 mb-4">Urgencia Dental</p>
               <Link
                 href="/book"
                 className="block w-full text-center px-6 py-4 bg-peach rounded-full text-ink-900 text-sm font-semibold hover:bg-peach-dark transition-colors duration-200"
               >
-                Book Appointment
+                Reservar Cita
               </Link>
             </div>
           </div>

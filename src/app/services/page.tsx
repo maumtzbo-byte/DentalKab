@@ -3,14 +3,14 @@ import type { Metadata } from "next";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Servicios",
 };
 
 export default function ServicesPage() {
   return (
     <main className="min-h-screen w-full pt-28 md:pt-32 px-3 md:px-5 pb-1.5 md:pb-2">
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[0.95] text-ink-900 mb-8 md:mb-12">Services</h1>
+        <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[0.95] text-ink-900 mb-8 md:mb-12">Servicios</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2 pb-16 md:pb-20">
           {services.map((service, i) => (

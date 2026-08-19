@@ -34,7 +34,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     <main className="min-h-screen w-full pt-28 md:pt-32 px-3 md:px-5 pb-1.5 md:pb-2">
       <div className="max-w-5xl mx-auto">
         <Link href="/services" className="inline-block text-sm font-semibold text-ink-900 hover:text-ochre mb-8">
-          &larr; All Services
+          &larr; Todos los servicios
         </Link>
 
         <div className="rounded-xl md:rounded-2xl bg-cream-2 p-6 md:p-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-1.5 md:mb-2">
@@ -54,7 +54,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <p className="text-base md:text-xl font-semibold text-ink-900 leading-relaxed">{service.description}</p>
           </div>
           <div className="rounded-xl md:rounded-2xl bg-ink-900 p-6 md:p-10 flex flex-col justify-between">
-            <p className="text-xs md:text-sm font-semibold text-white mb-4">What&apos;s included</p>
+            <p className="text-xs md:text-sm font-semibold text-white mb-4">Qué incluye</p>
             <ul className="flex flex-col gap-3">
               {service.benefits.map((benefit) => (
                 <li key={benefit} className="text-sm md:text-base font-semibold text-white leading-snug">
@@ -67,18 +67,18 @@ export default async function ServiceDetailPage({ params }: Props) {
 
         <div className="rounded-xl md:rounded-2xl bg-cream-2 p-6 md:p-10 flex flex-wrap items-center justify-between gap-6 mb-8 md:mb-10">
           <div>
-            <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2">Consultation</p>
+            <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2">Consulta</p>
             <h3 className="text-xl md:text-3xl font-bold text-ink-900 leading-tight">
-              Ready to get started
+              ¿Listo para comenzar
               <br />
-              with {service.name.replace("\n", " ")}?
+              con {service.name.replace("\n", " ")}?
             </h3>
           </div>
           <Link
             href="/book"
             className="px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold hover:scale-105 hover:bg-peach-dark transition-transform inline-flex items-center gap-2"
           >
-            Book Online
+            Reservar
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
               <path d={arrowIconPath} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -86,7 +86,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
 
         <div className="pb-16 md:pb-20">
-          <h4 className="text-sm font-semibold text-ink-900 uppercase tracking-tight mb-4">Other services</h4>
+          <h4 className="text-sm font-semibold text-ink-900 uppercase tracking-tight mb-4">Otros servicios</h4>
           <div className="flex flex-wrap gap-1.5 md:gap-2">
             {otherServices.map((s) => (
               <Link

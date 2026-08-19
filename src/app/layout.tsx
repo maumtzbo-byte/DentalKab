@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { RootClientShell } from "@/components/root-client-shell";
 
 export const metadata: Metadata = {
-  title: "DentalKab - Quality Healthcare",
+  title: "DentalKab - Atención Dental de Calidad",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <link
           href="https://db.onlinewebfonts.com/c/1cd1e7d71e048159076fd90b39846902?family=Open+Sauce+One"

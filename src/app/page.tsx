@@ -19,13 +19,13 @@ const SECTION3_IMG2 =
 const SECTION3_BG =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114355_752ba9e6-0942-4abb-9047-5d9bb16632e9.png&w=1280&q=85";
 
-const featureBars = ["Advanced Dentistry", "High Quality Equipment", "Friendly Staff"];
+const featureBars = ["Odontología Avanzada", "Equipo de Alta Calidad", "Personal Amable"];
 
 const serviceCards: { name: string; num: string | null; active: boolean; slug: string }[] = [
-  { name: "Dental\nVeneers", num: "01", active: true, slug: "dental-veneers" },
-  { name: "Dental\nCrowns", num: "02", active: false, slug: "dental-crowns" },
-  { name: "Teeth\nWhitening", num: "03", active: false, slug: "teeth-whitening" },
-  { name: "Dental\nImplants", num: null, active: false, slug: "dental-implants" },
+  { name: "Carillas\nDentales", num: "01", active: true, slug: "dental-veneers" },
+  { name: "Coronas\nDentales", num: "02", active: false, slug: "dental-crowns" },
+  { name: "Blanqueamiento\nDental", num: "03", active: false, slug: "teeth-whitening" },
+  { name: "Implantes\nDentales", num: null, active: false, slug: "dental-implants" },
 ];
 
 const arrowIconPath = "M1 7h12m0 0L8 2m5 5L8 12";
@@ -245,22 +245,22 @@ export default function Home() {
           style={s1Reveal.getAnimStyle(3)}
         >
           <p className="absolute top-4 left-4 md:top-7 md:left-7 text-ink-900 text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
-            We wish to provide professional dental services
+            Ofrecemos servicios dentales profesionales
             <br />
-            that match the current technologies
+            que van a la par de la tecnología actual
           </p>
           <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
             <span className="block text-ink-900 text-xs md:text-sm font-semibold mb-1 md:mb-2">
-              Trusted Dentist in West New York
+              Dentistas de confianza en tu ciudad
             </span>
             <h1 className="text-ink-900 text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
-              Dental
+              Cuidado
               <br />
-              Care
+              Dental
             </h1>
           </div>
           <span className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10">
-            Free Consultation
+            Consulta Gratis
           </span>
         </MaskedCard>
       </section>
@@ -284,10 +284,10 @@ export default function Home() {
             style={s2Reveal.getAnimStyle(0)}
           >
             <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-ink-900 text-2xl md:text-3xl font-bold z-10">
-              Smile Gallery
+              Galería de Sonrisas
             </h3>
             <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-ink-900 text-xs md:text-sm font-semibold z-10">
-              Our cosmetic dental work
+              Nuestro trabajo de odontología estética
             </p>
           </MaskedCard>
 
@@ -301,12 +301,12 @@ export default function Home() {
             style={s2Reveal.getAnimStyle(1)}
           >
             <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10">
-              If you want a gorgeous smile,
+              Si quieres una sonrisa espectacular,
               <br />
-              call us to ask about a smile makeover.
+              llámanos y pregunta por nuestro cambio de sonrisa.
             </p>
             <button className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold z-10 hover:scale-105 hover:bg-peach-dark transition-transform">
-              Call Us
+              Llámanos
             </button>
           </MaskedCard>
 
@@ -320,9 +320,9 @@ export default function Home() {
             style={s2Reveal.getAnimStyle(2)}
           >
             <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-ink-900 text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
-              Smile
+              Cambio de
               <br />
-              makeover
+              sonrisa
             </h2>
           </MaskedCard>
 
@@ -381,21 +381,21 @@ export default function Home() {
               style={s3Reveal.getAnimStyle(0)}
             >
               <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.95] text-ink-900">
-                Implant
+                Implantes
                 <br />
-                Dentistry
+                Dentales
               </h2>
-              <p className="text-xs md:text-sm font-semibold text-ink-900">Restore Missing Teeth</p>
+              <p className="text-xs md:text-sm font-semibold text-ink-900">Recupera los dientes perdidos</p>
             </div>
 
             <div className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0" style={s3Reveal.getAnimStyle(1)}>
               <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={SECTION3_IMG1} alt="Dental implant procedure" className="w-full h-full object-cover" />
+                <img src={SECTION3_IMG1} alt="Procedimiento de implante dental" className="w-full h-full object-cover" />
               </div>
               <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={SECTION3_IMG2} alt="Dental restoration" className="w-full h-full object-cover" />
+                <img src={SECTION3_IMG2} alt="Restauración dental" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -404,20 +404,20 @@ export default function Home() {
               style={s3Reveal.getAnimStyle(2)}
             >
               <div>
-                <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2 md:mb-3">Consultation</p>
+                <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2 md:mb-3">Consulta</p>
                 <h3 className="text-xl md:text-3xl font-bold text-ink-900 leading-6 md:leading-8">
+                  Servicios de
+                  <br />
+                  Restauración
+                  <br />
                   Dental
-                  <br />
-                  Restoration
-                  <br />
-                  Services
                 </h3>
               </div>
               <Link
                 href="/book"
                 className="px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold hover:scale-105 hover:bg-peach-dark transition-transform"
               >
-                Book Online
+                Reservar
               </Link>
             </div>
           </div>
@@ -427,15 +427,15 @@ export default function Home() {
             style={s3Reveal.getAnimStyle(3)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={SECTION3_BG} alt="Smiling patient" className="w-full h-full object-cover" />
+            <img src={SECTION3_BG} alt="Paciente sonriendo" className="w-full h-full object-cover" />
             <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
               <div className="flex-1 bg-cream rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
                 <h4 className="text-lg md:text-2xl font-bold text-ink-900 leading-5 md:leading-7">
-                  The Process
+                  El Proceso
                   <br />
-                  of Installing
+                  de Colocar
                   <br />
-                  Implants
+                  Implantes
                 </h4>
                 <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-ink-900 flex items-center justify-center">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
@@ -451,11 +451,11 @@ export default function Home() {
               </div>
               <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
                 <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
-                  Caring
+                  Cuidado
                   <br />
-                  for Dental
+                  de los
                   <br />
-                  Implants
+                  Implantes
                 </h4>
                 <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center text-white">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">

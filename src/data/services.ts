@@ -10,54 +10,54 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "dental-veneers",
-    name: "Dental Veneers",
+    name: "Carillas Dentales",
     num: "01",
-    tagline: "Thin, custom shells for a flawless smile",
+    tagline: "Láminas delgadas y personalizadas para una sonrisa perfecta",
     description:
-      "Veneers correct chips, gaps, and discoloration in as few as two visits, giving you a natural-looking smile that lasts for years.",
+      "Las carillas corrigen astillas, espacios y manchas en tan solo dos visitas, dándote una sonrisa de apariencia natural que dura años.",
     benefits: [
-      "Custom-shaded to match your natural teeth",
-      "Corrects chips, gaps, and uneven edges",
-      "Stain-resistant and built to last",
+      "Tono personalizado para igualar tus dientes naturales",
+      "Corrige astillas, espacios y bordes desiguales",
+      "Resistentes a manchas y duraderas",
     ],
   },
   {
     slug: "dental-crowns",
-    name: "Dental Crowns",
+    name: "Coronas Dentales",
     num: "02",
-    tagline: "Restore strength to damaged teeth",
+    tagline: "Devuelve fuerza a los dientes dañados",
     description:
-      "A crown caps a weakened or heavily filled tooth, restoring its shape, strength, and function while blending in with your bite.",
+      "Una corona cubre un diente debilitado o muy dañado, restaurando su forma, fuerza y función mientras se integra con tu mordida.",
     benefits: [
-      "Protects teeth after root canal treatment",
-      "Restores full chewing strength",
-      "Matched to your natural tooth color",
+      "Protege el diente después de un tratamiento de conducto",
+      "Restaura la fuerza completa de masticación",
+      "Igualada al color natural de tu diente",
     ],
   },
   {
     slug: "teeth-whitening",
-    name: "Teeth Whitening",
+    name: "Blanqueamiento Dental",
     num: "03",
-    tagline: "A brighter smile in a single visit",
+    tagline: "Una sonrisa más brillante en una sola visita",
     description:
-      "Our in-office whitening lifts years of staining safely, with a take-home kit to keep your results looking their best.",
+      "Nuestro blanqueamiento en consultorio elimina años de manchas de forma segura, con un kit para casa que mantiene tus resultados.",
     benefits: [
-      "Visible results in one appointment",
-      "Safe for enamel when done professionally",
-      "Take-home kit included for touch-ups",
+      "Resultados visibles en una sola cita",
+      "Seguro para el esmalte al realizarse profesionalmente",
+      "Incluye kit para casa para retoques",
     ],
   },
   {
     slug: "dental-implants",
-    name: "Dental Implants",
+    name: "Implantes Dentales",
     num: "04",
-    tagline: "Restore missing teeth, permanently",
+    tagline: "Recupera los dientes perdidos, de forma permanente",
     description:
-      "Implants replace missing teeth from the root up, giving you a permanent, natural-feeling result backed by digital treatment planning.",
+      "Los implantes reemplazan dientes perdidos desde la raíz, dándote un resultado permanente y de sensación natural respaldado por planeación digital.",
     benefits: [
-      "Functions and feels like a natural tooth",
-      "Prevents bone loss from missing teeth",
-      "Planned digitally for a precise fit",
+      "Funciona y se siente como un diente natural",
+      "Previene la pérdida ósea por dientes faltantes",
+      "Planeado digitalmente para un ajuste preciso",
     ],
   },
 ];

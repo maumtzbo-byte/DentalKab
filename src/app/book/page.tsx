@@ -35,25 +35,25 @@ export default function BookPage() {
   return (
     <main className="min-h-screen w-full pt-28 md:pt-32 px-3 md:px-5 pb-16 md:pb-20">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[0.95] text-ink-900 mb-3">Book Online</h1>
+        <h1 className="text-[clamp(2.5rem,7vw,5rem)] font-bold leading-[0.95] text-ink-900 mb-3">Reservar Cita</h1>
         <p className="text-sm md:text-base font-semibold text-ink-900 mb-8 md:mb-12">
-          Request a time and our team will confirm your appointment.
+          Solicita un horario y nuestro equipo confirmará tu cita.
         </p>
 
         <form onSubmit={handleSubmit} className="rounded-xl md:rounded-2xl bg-cream-2 p-6 md:p-10 flex flex-col gap-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <label className="flex flex-col gap-2 text-sm font-semibold text-ink-900">
-              Full name
+              Nombre completo
               <input
                 name="full_name"
                 type="text"
                 required
-                placeholder="Your name"
+                placeholder="Tu nombre"
                 className="rounded-lg border border-line bg-cream px-4 py-3 text-base font-normal text-ink-900 outline-none focus:border-ochre"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm font-semibold text-ink-900">
-              Phone
+              Teléfono
               <input
                 name="phone"
                 type="tel"
@@ -65,18 +65,18 @@ export default function BookPage() {
           </div>
 
           <label className="flex flex-col gap-2 text-sm font-semibold text-ink-900">
-            Email
+            Correo electrónico
             <input
               name="email"
               type="email"
-              placeholder="you@example.com"
+              placeholder="tucorreo@ejemplo.com"
               className="rounded-lg border border-line bg-cream px-4 py-3 text-base font-normal text-ink-900 outline-none focus:border-ochre"
             />
           </label>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <label className="flex flex-col gap-2 text-sm font-semibold text-ink-900">
-              Service
+              Servicio
               <select
                 name="service"
                 required
@@ -84,18 +84,18 @@ export default function BookPage() {
                 className="rounded-lg border border-line bg-cream px-4 py-3 text-base font-normal text-ink-900 outline-none focus:border-ochre"
               >
                 <option value="" disabled>
-                  Select a service
+                  Selecciona un servicio
                 </option>
                 {services.map((service) => (
                   <option key={service.slug} value={service.name.replace("\n", " ")}>
                     {service.name.replace("\n", " ")}
                   </option>
                 ))}
-                <option value="General Consultation">General Consultation</option>
+                <option value="Consulta General">Consulta General</option>
               </select>
             </label>
             <label className="flex flex-col gap-2 text-sm font-semibold text-ink-900">
-              Preferred date
+              Fecha preferida
               <input
                 name="preferred_date"
                 type="date"
@@ -105,11 +105,11 @@ export default function BookPage() {
           </div>
 
           <label className="flex flex-col gap-2 text-sm font-semibold text-ink-900">
-            Message (optional)
+            Mensaje (opcional)
             <textarea
               name="message"
               rows={3}
-              placeholder="Tell us a bit about what you need"
+              placeholder="Cuéntanos un poco sobre lo que necesitas"
               className="rounded-lg border border-line bg-cream px-4 py-3 text-base font-normal text-ink-900 outline-none focus:border-ochre resize-y"
             />
           </label>
@@ -119,17 +119,17 @@ export default function BookPage() {
             disabled={status === "submitting"}
             className="mt-2 px-8 py-4 bg-peach rounded-full text-ink-900 text-base font-bold hover:scale-[1.02] hover:bg-peach-dark transition-transform disabled:opacity-50 disabled:hover:scale-100"
           >
-            {status === "submitting" ? "Sending..." : "Request Appointment"}
+            {status === "submitting" ? "Enviando..." : "Solicitar Cita"}
           </button>
 
           {status === "success" ? (
             <p className="text-sm font-semibold text-ink-900 bg-cream rounded-lg px-4 py-3 border border-line">
-              Thanks — your request was sent. We&apos;ll contact you to confirm your appointment.
+              Gracias — tu solicitud fue enviada. Te contactaremos para confirmar tu cita.
             </p>
           ) : null}
           {status === "error" ? (
             <p className="text-sm font-semibold text-red-700 bg-cream rounded-lg px-4 py-3 border border-red-200">
-              Something went wrong sending your request. Please try again.
+              Algo salió mal al enviar tu solicitud. Por favor intenta de nuevo.
             </p>
           ) : null}
         </form>
