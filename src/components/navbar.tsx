@@ -7,9 +7,8 @@ import { usePathname } from "next/navigation";
 const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Inicio", to: "/" },
   { label: "Servicios", to: "/services" },
-  { label: "Nosotros", to: "/#about" },
-  { label: "Galería", to: "/#gallery" },
-  { label: "Contacto", to: "/#contact" },
+  { label: "Nosotros", to: "/#nosotros" },
+  { label: "Ubicación", to: "/#ubicacion" },
 ];
 
 export function Navbar() {
@@ -42,23 +41,41 @@ export function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-3">
+          <Link
+            href="/book"
+            className="px-5 py-2.5 rounded-full border border-ochre text-sm font-semibold text-ink-900 hover:bg-ink-900 hover:text-cream hover:border-ink-900 transition-colors duration-200"
+          >
+            Urgencia Dental
+          </Link>
+          <Link
+            href="/book"
+            className="px-6 py-3 bg-peach rounded-full text-sm font-semibold text-ink-900 hover:bg-peach-dark transition-colors duration-200"
+          >
+            Reservar Cita
+          </Link>
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            className="px-6 py-3 bg-cream rounded-full border border-ochre text-sm font-semibold text-ink-900 hover:bg-ink-900 hover:text-cream hover:border-ink-900 transition-colors duration-200"
+            className="px-6 py-3 bg-cream rounded-full border border-ink-900/15 text-sm font-semibold text-ink-900 hover:bg-ink-900 hover:text-cream hover:border-ink-900 transition-colors duration-200"
           >
             Menú
           </button>
-          <span className="text-sm font-semibold text-ink-900">Urgencia Dental</span>
         </div>
 
-        <button
-          type="button"
-          className="md:hidden w-10 h-10 flex items-center justify-center relative"
-          aria-label="Abrir menú"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
+        <div className="flex md:hidden items-center gap-2">
+          <Link
+            href="/book"
+            className="px-4 py-2 bg-peach rounded-full text-xs font-semibold text-ink-900 hover:bg-peach-dark transition-colors duration-200"
+          >
+            Reservar
+          </Link>
+          <button
+            type="button"
+            className="w-10 h-10 flex items-center justify-center relative shrink-0"
+            aria-label="Abrir menú"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
           <span
             className={`absolute h-0.5 w-6 bg-ink-900 rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
               menuOpen ? "rotate-45 translate-y-0" : "-translate-y-2"
@@ -69,12 +86,13 @@ export function Navbar() {
               menuOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
             }`}
           />
-          <span
-            className={`absolute h-0.5 w-6 bg-ink-900 rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-              menuOpen ? "-rotate-45 translate-y-0" : "translate-y-2"
-            }`}
-          />
-        </button>
+            <span
+              className={`absolute h-0.5 w-6 bg-ink-900 rounded-full transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                menuOpen ? "-rotate-45 translate-y-0" : "translate-y-2"
+              }`}
+            />
+          </button>
+        </div>
       </nav>
 
       <div className={`fixed inset-0 z-40 ${menuOpen ? "" : "pointer-events-none"}`}>
