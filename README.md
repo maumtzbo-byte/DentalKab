@@ -1,29 +1,24 @@
 # DentalKab
 
-Proyecto Next.js con TypeScript, Tailwind CSS 4, Prisma 7 y Supabase (auth + Postgres).
+Single-page dental clinic landing page. React + Vite + TypeScript + Tailwind CSS, no external UI or icon libraries.
 
 ## Stack
 
-- [Next.js 16](https://nextjs.org/) (App Router)
-- React 19
-- Tailwind CSS 4
-- Prisma 7 + `@prisma/adapter-pg`
-- Supabase (`@supabase/ssr`) para autenticación
+- [Vite](https://vite.dev/) + React 19 + TypeScript
+- Tailwind CSS 3
 
-## Desarrollo local
+## Development
 
 ```bash
 npm install
-cp .env.example .env
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:5173](http://localhost:5173).
 
-## Base de datos
+## Build
 
 ```bash
-npm run db:migrate       # crear/aplicar migraciones en desarrollo
-npm run db:migrate:deploy # aplicar migraciones en producción
-npm run db:studio        # explorar la base de datos
+npm run build
+npm run preview
 ```
