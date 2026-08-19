@@ -224,7 +224,8 @@ export default function Home() {
             className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative"
             style={s1Reveal.getAnimStyle(i)}
           >
-            <span className="flex items-center justify-center h-full text-ink-900 text-lg md:text-3xl font-bold text-center relative z-10">
+            <div className="absolute inset-0 bg-ink-900/35 pointer-events-none" />
+            <span className="flex items-center justify-center h-full text-white text-lg md:text-3xl font-bold text-center relative z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
               {label}
             </span>
           </MaskedCard>
@@ -239,22 +240,23 @@ export default function Home() {
           className="w-full flex-1 min-h-0 rounded-xl md:rounded-2xl overflow-hidden relative"
           style={s1Reveal.getAnimStyle(3)}
         >
-          <p className="absolute top-4 left-4 md:top-7 md:left-7 text-ink-900 text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
+          <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/10 to-ink-900/30 pointer-events-none" />
+          <p className="absolute top-4 left-4 md:top-7 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
             Ofrecemos servicios dentales profesionales
             <br />
             que van a la par de la tecnología actual
           </p>
           <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-            <span className="block text-ink-900 text-xs md:text-sm font-semibold mb-1 md:mb-2">
+            <span className="block text-white text-xs md:text-sm font-semibold mb-1 md:mb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
               Dentistas de confianza en tu ciudad
             </span>
-            <h1 className="text-ink-900 text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
+            <h1 className="text-white text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
               Cuidado
               <br />
               Dental
             </h1>
           </div>
-          <span className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10">
+          <span className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
             Consulta Gratis
           </span>
         </MaskedCard>
@@ -278,10 +280,11 @@ export default function Home() {
             className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
             style={s2Reveal.getAnimStyle(0)}
           >
-            <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-ink-900 text-2xl md:text-3xl font-bold z-10">
+            <div className="absolute inset-0 bg-ink-900/30 pointer-events-none" />
+            <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white text-2xl md:text-3xl font-bold z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
               Galería de Sonrisas
             </h3>
-            <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-ink-900 text-xs md:text-sm font-semibold z-10">
+            <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white text-xs md:text-sm font-semibold z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
               Nuestro trabajo de odontología estética
             </p>
           </MaskedCard>
@@ -295,7 +298,8 @@ export default function Home() {
             className="md:row-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[200px] md:min-h-0"
             style={s2Reveal.getAnimStyle(1)}
           >
-            <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10">
+            <div className="absolute inset-0 bg-ink-900/25 pointer-events-none" />
+            <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
               Si quieres una sonrisa espectacular,
               <br />
               llámanos y pregunta por nuestro cambio de sonrisa.
@@ -314,7 +318,8 @@ export default function Home() {
             className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
             style={s2Reveal.getAnimStyle(2)}
           >
-            <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-ink-900 text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
+            <div className="absolute inset-0 bg-ink-900/30 pointer-events-none" />
+            <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10 [text-shadow:0_2px_8px_rgba(0,0,0,0.5)]">
               Cambio de
               <br />
               sonrisa
