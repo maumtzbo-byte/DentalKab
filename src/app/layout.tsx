@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
-import { RootClientShell } from "@/components/root-client-shell";
 
 export const metadata: Metadata = {
   title: "DentalKab - Atención Dental de Calidad",
@@ -25,10 +24,8 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-cream">
-        <RootClientShell>
-          <Navbar />
-          {children}
-        </RootClientShell>
+        <Navbar />
+        {children}
       </body>
     </html>
   );

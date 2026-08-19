@@ -1,435 +1,167 @@
-"use client";
-
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
+import { services } from "@/data/services";
 
 const HERO_IMAGE =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_113640_ccf3cf97-d447-425b-a134-d7b09fc743fc.png&w=1280&q=85";
 
-const SECTION2_IMAGE =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114219_414dfe80-f15c-4e25-bf52-b13721f4bd88.png&w=1280&q=85";
-
-const SECTION3_BG =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114355_752ba9e6-0942-4abb-9047-5d9bb16632e9.png&w=1280&q=85";
-
-const featureBars = ["Odontología Avanzada", "Equipo de Alta Calidad", "Personal Amable"];
-
-const serviceCards: { name: string; num: string | null; active: boolean; slug: string }[] = [
-  { name: "Endodoncia", num: "01", active: true, slug: "endodoncia" },
-  { name: "Ortodoncia", num: "02", active: false, slug: "ortodoncia" },
-  { name: "Ortodoncia\nPediátrica", num: "03", active: false, slug: "ortodoncia-pediatrica" },
-  { name: "Cirugía\nMaxilofacial", num: "04", active: false, slug: "cirugia-maxilofacial" },
-  { name: "Blanqueo\nDental", num: "05", active: false, slug: "blanqueamientos" },
-];
-
 const arrowIconPath = "M1 7h12m0 0L8 2m5 5L8 12";
 
-// ---------------------------------------------------------------------------
-// Hooks
-// ---------------------------------------------------------------------------
-
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mql.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
-
-  return isMobile;
-}
-
-type MaskPosition = { x: number; y: number; sw: number; sh: number };
-
-function useMaskPositions(
-  sectionRef: React.RefObject<HTMLElement | null>,
-  cardRefs: React.RefObject<(HTMLDivElement | null)[]>,
-  count: number,
-) {
-  const [positions, setPositions] = useState<MaskPosition[]>(() =>
-    Array.from({ length: count }, () => ({ x: 0, y: 0, sw: 0, sh: 0 })),
-  );
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const compute = () => {
-      const sectionRect = section.getBoundingClientRect();
-      const sw = sectionRect.width;
-      const sh = sectionRect.height;
-      const next: MaskPosition[] = [];
-      for (let i = 0; i < count; i++) {
-        const card = cardRefs.current[i];
-        if (!card) {
-          next.push({ x: 0, y: 0, sw, sh });
-          continue;
-        }
-        const cardRect = card.getBoundingClientRect();
-        next.push({
-          x: cardRect.left - sectionRect.left,
-          y: cardRect.top - sectionRect.top,
-          sw,
-          sh,
-        });
-      }
-      setPositions(next);
-    };
-
-    compute();
-    const ro = new ResizeObserver(compute);
-    ro.observe(section);
-    return () => ro.disconnect();
-  }, [sectionRef, cardRefs, count]);
-
-  return positions;
-}
-
-function useImageWidth(src: string, sectionHeight: number) {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    if (!src || !sectionHeight) return;
-    const img = new Image();
-    img.onload = () => {
-      setWidth(img.naturalWidth * (sectionHeight / img.naturalHeight));
-    };
-    img.src = src;
-  }, [src, sectionHeight]);
-
-  return width;
-}
-
-function useStaggeredReveal(_count: number, threshold = 0.15) {
-  const containerRef = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  const getAnimStyle = useCallback(
-    (index: number): CSSProperties => ({
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(24px)",
-      transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 120}ms`,
-    }),
-    [visible],
-  );
-
-  return { containerRef, getAnimStyle };
-}
-
-function setCardRef(refsArray: React.RefObject<(HTMLDivElement | null)[]>, index: number) {
-  return (el: HTMLDivElement | null) => {
-    refsArray.current[index] = el;
-  };
-}
-
-// ---------------------------------------------------------------------------
-// MaskedCard
-// ---------------------------------------------------------------------------
-
-interface MaskedCardProps {
-  bgImage: string;
-  position: MaskPosition;
-  imageWidth: number;
-  focalX: number;
-  className?: string;
-  children?: ReactNode;
-  cardRef?: (el: HTMLDivElement | null) => void;
-  style?: CSSProperties;
-}
-
-function MaskedCard({ bgImage, position, imageWidth, focalX, className, children, cardRef, style }: MaskedCardProps) {
-  const overflow = imageWidth > position.sw ? imageWidth - position.sw : 0;
-  const focalOffset = overflow * focalX;
-
-  return (
-    <div
-      ref={cardRef}
-      className={className}
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: `auto ${position.sh}px`,
-        backgroundPosition: `-${position.x + focalOffset}px -${position.y}px`,
-        backgroundRepeat: "no-repeat",
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Home
-// ---------------------------------------------------------------------------
+const features = [
+  {
+    title: "Odontología Avanzada",
+    text: "Tratamientos con tecnología moderna y protocolos actualizados.",
+    icon: (
+      <path d="M12 3c-2.5 0-4 1.6-4 4.2 0 2.7 1 6.7 1.8 9.4.3 1 .6 1.9 1.4 1.9.9 0 1-1.6 1.2-2.6.2-1 .6-1.6 1.6-1.6s1.4.6 1.6 1.6c.2 1 .3 2.6 1.2 2.6.8 0 1.1-.9 1.4-1.9.8-2.7 1.8-6.7 1.8-9.4C20 4.6 18.5 3 16 3c-1.1 0-1.9.4-2.7.9-.5.3-.7.3-1.2 0-.8-.5-1.6-.9-2.7-.9Z" />
+    ),
+  },
+  {
+    title: "Equipo de Alta Calidad",
+    text: "Instrumental y materiales certificados para tu seguridad.",
+    icon: (
+      <>
+        <path d="M12 3 4.5 5.5v5.2c0 5 3.2 8.4 7.5 10.3 4.3-1.9 7.5-5.3 7.5-10.3V5.5L12 3Z" />
+        <path d="m9 12 2.2 2.2L15.5 10" />
+      </>
+    ),
+  },
+  {
+    title: "Personal Amable",
+    text: "Un equipo cálido que te acompaña en cada visita.",
+    icon: (
+      <path d="M20.5 8.3c0-2.4-2-4.3-4.4-4.3-1.6 0-3 .9-3.7 2.2h-.8c-.7-1.3-2.1-2.2-3.7-2.2-2.4 0-4.4 1.9-4.4 4.3 0 5 8 10.4 8 10.4s8-5.4 8-10.4Z" />
+    ),
+  },
+];
 
 export default function Home() {
-  const isMobile = useIsMobile();
-
-  const section1Ref = useRef<HTMLElement | null>(null);
-  const section1CardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const s1Reveal = useStaggeredReveal(4);
-  const s1Positions = useMaskPositions(section1Ref, section1CardRefs, 4);
-  const s1ImageWidth = useImageWidth(HERO_IMAGE, s1Positions[0]?.sh ?? 0);
-  const s1FocalX = isMobile ? 0.7 : 0.8;
-
-  const section2Ref = useRef<HTMLElement | null>(null);
-  const section2CardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const s2Reveal = useStaggeredReveal(4);
-  const s2Positions = useMaskPositions(section2Ref, section2CardRefs, 4);
-  const s2ImageWidth = useImageWidth(SECTION2_IMAGE, s2Positions[0]?.sh ?? 0);
-  const s2FocalX = isMobile ? 0.65 : 0.8;
-
-  const s3Reveal = useStaggeredReveal(4);
-
   return (
-    <>
-      {/* Section 1 - Hero */}
-      <section
-        ref={(el) => {
-          section1Ref.current = el;
-          s1Reveal.containerRef.current = el;
-        }}
-        className="h-screen w-full overflow-hidden flex flex-col pt-24 md:pt-24 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
-      >
-        {featureBars.map((label, i) => (
-          <MaskedCard
-            key={label}
-            bgImage={HERO_IMAGE}
-            position={s1Positions[i]}
-            imageWidth={s1ImageWidth}
-            focalX={s1FocalX}
-            cardRef={setCardRef(section1CardRefs, i)}
-            className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative"
-            style={s1Reveal.getAnimStyle(i)}
-          >
-            <div className="absolute inset-0 bg-ink-900/35 pointer-events-none" />
-            <span className="flex items-center justify-center h-full text-white text-lg md:text-3xl font-bold text-center relative z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-              {label}
+    <main>
+      {/* Hero */}
+      <section className="pt-28 md:pt-36 px-4 md:px-8 pb-12 md:pb-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-cream-2 text-ochre-dark text-xs md:text-sm font-semibold mb-5 md:mb-6">
+              Atención dental de calidad
             </span>
-          </MaskedCard>
-        ))}
-
-        <MaskedCard
-          bgImage={HERO_IMAGE}
-          position={s1Positions[3]}
-          imageWidth={s1ImageWidth}
-          focalX={s1FocalX}
-          cardRef={setCardRef(section1CardRefs, 3)}
-          className="w-full flex-1 min-h-0 rounded-xl md:rounded-2xl overflow-hidden relative"
-          style={s1Reveal.getAnimStyle(3)}
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-ink-900/10 to-ink-900/30 pointer-events-none" />
-          <p className="absolute top-4 left-4 md:top-7 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-            Ofrecemos servicios dentales profesionales
-            <br />
-            que van a la par de la tecnología actual
-          </p>
-          <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-            <span className="block text-white text-xs md:text-sm font-semibold mb-1 md:mb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-              Dentistas de confianza en tu ciudad
-            </span>
-            <h1 className="text-white text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">
-              Cuidado
-              <br />
-              Dental
+            <h1 className="text-[clamp(2.5rem,6vw,4.25rem)] font-bold leading-[1.05] text-ink-900 mb-5 md:mb-6">
+              Tu sonrisa, en las mejores manos
             </h1>
-          </div>
-          <span className="absolute bottom-6 right-4 md:bottom-10 md:right-8 text-white text-xs md:text-sm font-semibold z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-            Consulta Gratis
-          </span>
-        </MaskedCard>
-      </section>
-
-      {/* Section 2 - Smile Gallery */}
-      <section
-        ref={(el) => {
-          section2Ref.current = el;
-          s2Reveal.containerRef.current = el;
-        }}
-        className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col bg-coffee pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
-      >
-        <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto_auto] md:grid-rows-[1fr_1fr_0.8fr] gap-1.5 md:gap-2">
-          <MaskedCard
-            bgImage={SECTION2_IMAGE}
-            position={s2Positions[0]}
-            imageWidth={s2ImageWidth}
-            focalX={s2FocalX}
-            cardRef={setCardRef(section2CardRefs, 0)}
-            className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
-            style={s2Reveal.getAnimStyle(0)}
-          >
-            <div className="absolute inset-0 bg-ink-900/30 pointer-events-none" />
-            <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white text-2xl md:text-3xl font-bold z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-              Galería de Sonrisas
-            </h3>
-            <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white text-xs md:text-sm font-semibold z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-              Nuestro trabajo de odontología estética
+            <p className="text-base md:text-lg text-ink-700 leading-relaxed mb-8 md:mb-10 max-w-md">
+              Ofrecemos servicios dentales profesionales que van a la par de la tecnología actual, con un equipo
+              dedicado a cuidar tu salud bucal.
             </p>
-          </MaskedCard>
-
-          <MaskedCard
-            bgImage={SECTION2_IMAGE}
-            position={s2Positions[1]}
-            imageWidth={s2ImageWidth}
-            focalX={s2FocalX}
-            cardRef={setCardRef(section2CardRefs, 1)}
-            className="md:row-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[200px] md:min-h-0"
-            style={s2Reveal.getAnimStyle(1)}
-          >
-            <div className="absolute inset-0 bg-ink-900/25 pointer-events-none" />
-            <p className="absolute bottom-16 left-5 md:bottom-20 md:left-7 text-white text-xs md:text-sm font-semibold leading-4 md:leading-5 z-10 [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
-              Si quieres una sonrisa espectacular,
-              <br />
-              llámanos y pregunta por nuestro cambio de sonrisa.
-            </p>
-            <button className="absolute bottom-4 left-5 md:bottom-6 md:left-7 px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold z-10 hover:scale-105 hover:bg-peach-dark transition-transform">
-              Llámanos
-            </button>
-          </MaskedCard>
-
-          <MaskedCard
-            bgImage={SECTION2_IMAGE}
-            position={s2Positions[2]}
-            imageWidth={s2ImageWidth}
-            focalX={s2FocalX}
-            cardRef={setCardRef(section2CardRefs, 2)}
-            className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
-            style={s2Reveal.getAnimStyle(2)}
-          >
-            <div className="absolute inset-0 bg-ink-900/30 pointer-events-none" />
-            <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10 [text-shadow:0_2px_8px_rgba(0,0,0,0.5)]">
-              Cambio de
-              <br />
-              sonrisa
-            </h2>
-          </MaskedCard>
-
-          <MaskedCard
-            bgImage={SECTION2_IMAGE}
-            position={s2Positions[3]}
-            imageWidth={s2ImageWidth}
-            focalX={s2FocalX}
-            cardRef={setCardRef(section2CardRefs, 3)}
-            className="col-span-1 md:col-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[340px] md:min-h-0"
-            style={s2Reveal.getAnimStyle(3)}
-          >
-            <div className="absolute inset-0 z-10 grid grid-cols-2 auto-rows-fr md:flex md:flex-nowrap gap-1.5 md:gap-2 p-2 md:p-3 overflow-hidden">
-              {serviceCards.map((svc, i) => (
-                <Link
-                  key={svc.slug}
-                  href={`/services/${svc.slug}`}
-                  className={`md:flex-1 min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
-                    i === serviceCards.length - 1 && serviceCards.length % 2 === 1 ? "col-span-2 md:col-span-1" : ""
-                  } ${svc.active ? "bg-cream/90 backdrop-blur-md" : "bg-white/20 backdrop-blur-xl"}`}
-                >
-                  <h3
-                    className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line break-words ${
-                      svc.active ? "text-ink-900" : "text-white"
-                    }`}
-                  >
-                    {svc.name}
-                  </h3>
-                  {svc.num ? (
-                    <span
-                      className={`self-end w-8 h-8 md:w-12 md:h-12 rounded-full border flex items-center justify-center text-xs md:text-sm font-semibold ${
-                        svc.active ? "border-ink-900 text-ink-900" : "border-white text-white"
-                      }`}
-                    >
-                      {svc.num}
-                    </span>
-                  ) : null}
-                </Link>
-              ))}
-            </div>
-          </MaskedCard>
-        </div>
-      </section>
-
-      {/* Section 3 - Implant Dentistry */}
-      <section
-        ref={(el) => {
-          s3Reveal.containerRef.current = el;
-        }}
-        className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
-      >
-        <div className="flex-1 min-h-0">
-          <div
-            className="rounded-xl md:rounded-2xl overflow-hidden relative h-full min-h-[350px] md:min-h-0"
-            style={s3Reveal.getAnimStyle(0)}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={SECTION3_BG} alt="Paciente sonriendo" className="w-full h-full object-cover" />
-            <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
+            <div className="flex flex-wrap gap-3 md:gap-4">
+              <Link
+                href="/book"
+                className="px-7 py-3.5 md:px-8 md:py-4 bg-peach rounded-full text-ink-900 text-sm md:text-base font-bold hover:bg-peach-dark hover:scale-105 transition-all"
+              >
+                Reservar Cita
+              </Link>
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Dental+Kab"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-cream rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:opacity-90 transition-opacity"
+                className="px-7 py-3.5 md:px-8 md:py-4 rounded-full border border-ochre text-ink-900 text-sm md:text-base font-bold hover:bg-ink-900 hover:text-cream hover:border-ink-900 transition-colors"
               >
-                <h4 className="text-lg md:text-2xl font-bold text-ink-900 leading-5 md:leading-7">
-                  Nuestra
-                  <br />
-                  Ubicación
-                </h4>
-                <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-ink-900 flex items-center justify-center">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
-                    <path
-                      d={arrowIconPath}
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
+                Nuestra Ubicación
               </a>
-              <Link
-                href="/book"
-                className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-white/30 transition-colors"
-              >
-                <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
-                  Reservar
-                  <br />
-                  Cita
-                </h4>
-                <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center text-white">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
-                    <path
-                      d={arrowIconPath}
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </Link>
             </div>
+          </div>
+
+          <div className="relative rounded-2xl md:rounded-3xl overflow-hidden aspect-[4/3] md:aspect-square">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={HERO_IMAGE} alt="Paciente sonriendo" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
-    </>
+
+      {/* Features */}
+      <section className="px-4 md:px-8 pb-16 md:pb-24">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          {features.map((feature) => (
+            <div key={feature.title} className="rounded-2xl bg-cream-2 p-6 md:p-8">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-ochre mb-4 md:mb-5"
+              >
+                {feature.icon}
+              </svg>
+              <h3 className="text-lg md:text-xl font-bold text-ink-900 mb-2">{feature.title}</h3>
+              <p className="text-sm md:text-base text-ink-700 leading-relaxed">{feature.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="px-4 md:px-8 pb-16 md:pb-24">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-8 md:mb-10">
+            <div>
+              <h2 className="text-[clamp(2rem,4vw,3rem)] font-bold leading-[1.05] text-ink-900 mb-2">
+                Nuestros Servicios
+              </h2>
+              <p className="text-sm md:text-base text-ink-700">
+                Tratamientos dentales completos para toda la familia.
+              </p>
+            </div>
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-sm md:text-base font-semibold text-ink-900 hover:text-ochre transition-colors"
+            >
+              Ver todos los servicios
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
+                <path d={arrowIconPath} stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {services.map((service, i) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className={`rounded-2xl p-6 md:p-7 flex flex-col justify-between min-h-[200px] hover:opacity-85 transition-opacity ${
+                  i % 2 === 0 ? "bg-cream-2" : "bg-line"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <h3 className="text-xl md:text-2xl font-bold leading-[1.1] text-ink-900">{service.name}</h3>
+                  <span className="w-9 h-9 md:w-10 md:h-10 shrink-0 rounded-full border border-ink-900 flex items-center justify-center text-xs font-semibold text-ink-900">
+                    {service.num}
+                  </span>
+                </div>
+                <p className="text-sm font-semibold text-ink-700">{service.tagline}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA banner */}
+      <section className="px-4 md:px-8 pb-16 md:pb-24">
+        <div className="max-w-6xl mx-auto rounded-2xl md:rounded-3xl bg-ink-900 px-6 py-12 md:px-16 md:py-16 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div>
+            <h2 className="text-2xl md:text-4xl font-bold text-cream mb-2 md:mb-3">¿Listo para tu próxima cita?</h2>
+            <p className="text-sm md:text-base text-cream/80">
+              Agenda en línea y nuestro equipo confirmará tu horario.
+            </p>
+          </div>
+          <Link
+            href="/book"
+            className="shrink-0 px-8 py-4 bg-peach rounded-full text-ink-900 text-base font-bold hover:bg-peach-dark hover:scale-105 transition-all"
+          >
+            Reservar Cita
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }
