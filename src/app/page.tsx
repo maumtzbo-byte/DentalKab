@@ -430,13 +430,16 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={SECTION3_BG} alt="Paciente sonriendo" className="w-full h-full object-cover" />
             <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
-              <div className="flex-1 bg-cream rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Dental+Kab"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 bg-cream rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:opacity-90 transition-opacity"
+              >
                 <h4 className="text-lg md:text-2xl font-bold text-ink-900 leading-5 md:leading-7">
-                  El Proceso
+                  Nuestra
                   <br />
-                  de Colocar
-                  <br />
-                  Implantes
+                  Ubicación
                 </h4>
                 <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-ink-900 flex items-center justify-center">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
@@ -449,14 +452,15 @@ export default function Home() {
                     />
                   </svg>
                 </span>
-              </div>
-              <div className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
+              </a>
+              <Link
+                href="/book"
+                className="flex-1 bg-white/20 backdrop-blur-xl rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52 hover:bg-white/30 transition-colors"
+              >
                 <h4 className="text-lg md:text-2xl font-bold text-white leading-5 md:leading-7">
-                  Cuidado
+                  Reservar
                   <br />
-                  de los
-                  <br />
-                  Implantes
+                  Cita
                 </h4>
                 <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-white flex items-center justify-center text-white">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
@@ -469,7 +473,7 @@ export default function Home() {
                     />
                   </svg>
                 </span>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
