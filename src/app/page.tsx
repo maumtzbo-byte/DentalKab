@@ -229,7 +229,7 @@ export default function Home() {
             className="w-full h-14 md:h-20 shrink-0 rounded-xl md:rounded-2xl overflow-hidden relative"
             style={s1Reveal.getAnimStyle(i)}
           >
-            <span className="flex items-center justify-center h-full text-black text-lg md:text-3xl font-bold text-center relative z-10">
+            <span className="flex items-center justify-center h-full text-ink-900 text-lg md:text-3xl font-bold text-center relative z-10">
               {label}
             </span>
           </MaskedCard>
@@ -244,16 +244,16 @@ export default function Home() {
           className="w-full flex-1 min-h-0 rounded-xl md:rounded-2xl overflow-hidden relative"
           style={s1Reveal.getAnimStyle(3)}
         >
-          <p className="absolute top-4 left-4 md:top-7 md:left-7 text-black text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
+          <p className="absolute top-4 left-4 md:top-7 md:left-7 text-ink-900 text-xs md:text-sm font-semibold leading-4 md:leading-5 max-w-[200px] md:max-w-[300px] z-10">
             We wish to provide professional dental services
             <br />
             that match the current technologies
           </p>
           <div className="absolute bottom-5 left-3 md:bottom-8 md:left-4 z-10">
-            <span className="block text-black text-xs md:text-sm font-semibold mb-1 md:mb-2">
+            <span className="block text-ink-900 text-xs md:text-sm font-semibold mb-1 md:mb-2">
               Trusted Dentist in West New York
             </span>
-            <h1 className="text-black text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
+            <h1 className="text-ink-900 text-[clamp(3rem,11vw,11rem)] font-bold leading-[0.79] tracking-tight">
               Dental
               <br />
               Care
@@ -283,10 +283,10 @@ export default function Home() {
             className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
             style={s2Reveal.getAnimStyle(0)}
           >
-            <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-2xl md:text-3xl font-bold z-10">
+            <h3 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-ink-900 text-2xl md:text-3xl font-bold z-10">
               Smile Gallery
             </h3>
-            <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-black text-xs md:text-sm font-semibold z-10">
+            <p className="absolute bottom-4 left-5 md:bottom-6 md:left-7 text-white md:text-ink-900 text-xs md:text-sm font-semibold z-10">
               Our cosmetic dental work
             </p>
           </MaskedCard>
@@ -305,7 +305,7 @@ export default function Home() {
               <br />
               call us to ask about a smile makeover.
             </p>
-            <button className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold z-10 hover:scale-105 transition-transform">
+            <button className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold z-10 hover:scale-105 hover:bg-peach-dark transition-transform">
               Call Us
             </button>
           </MaskedCard>
@@ -319,7 +319,7 @@ export default function Home() {
             className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[160px] md:min-h-0"
             style={s2Reveal.getAnimStyle(2)}
           >
-            <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-black text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
+            <h2 className="absolute top-4 left-5 md:top-6 md:left-7 text-white md:text-ink-900 text-[clamp(3rem,7vw,6rem)] font-bold leading-[0.9] z-10">
               Smile
               <br />
               makeover
@@ -341,12 +341,12 @@ export default function Home() {
                   key={svc.slug}
                   href={`/services/${svc.slug}`}
                   className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
-                    svc.active ? "bg-white/90 backdrop-blur-md" : "bg-white/20 backdrop-blur-xl"
+                    svc.active ? "bg-cream/90 backdrop-blur-md" : "bg-white/20 backdrop-blur-xl"
                   }`}
                 >
                   <h3
                     className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line ${
-                      svc.active ? "text-black" : "text-white"
+                      svc.active ? "text-ink-900" : "text-white"
                     }`}
                   >
                     {svc.name}
@@ -354,7 +354,7 @@ export default function Home() {
                   {svc.num ? (
                     <span
                       className={`self-end w-8 h-8 md:w-12 md:h-12 rounded-full border flex items-center justify-center text-xs md:text-sm font-semibold ${
-                        svc.active ? "border-black text-black" : "border-white text-white"
+                        svc.active ? "border-ink-900 text-ink-900" : "border-white text-white"
                       }`}
                     >
                       {svc.num}
@@ -377,15 +377,15 @@ export default function Home() {
         <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
           <div className="flex flex-col gap-1.5 md:gap-2">
             <div
-              className="rounded-xl md:rounded-2xl bg-stone-50 p-5 md:p-7 flex flex-col justify-between flex-[1.2] min-h-[180px] md:min-h-0"
+              className="rounded-xl md:rounded-2xl bg-cream-2 p-5 md:p-7 flex flex-col justify-between flex-[1.2] min-h-[180px] md:min-h-0"
               style={s3Reveal.getAnimStyle(0)}
             >
-              <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.95] text-black">
+              <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.95] text-ink-900">
                 Implant
                 <br />
                 Dentistry
               </h2>
-              <p className="text-xs md:text-sm font-semibold text-black">Restore Missing Teeth</p>
+              <p className="text-xs md:text-sm font-semibold text-ink-900">Restore Missing Teeth</p>
             </div>
 
             <div className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0" style={s3Reveal.getAnimStyle(1)}>
@@ -400,12 +400,12 @@ export default function Home() {
             </div>
 
             <div
-              className="rounded-xl md:rounded-2xl bg-zinc-200 p-5 md:p-7 flex items-end justify-between flex-[0.8] min-h-[160px] md:min-h-0"
+              className="rounded-xl md:rounded-2xl bg-line p-5 md:p-7 flex items-end justify-between flex-[0.8] min-h-[160px] md:min-h-0"
               style={s3Reveal.getAnimStyle(2)}
             >
               <div>
-                <p className="text-xs md:text-sm font-semibold text-black mb-2 md:mb-3">Consultation</p>
-                <h3 className="text-xl md:text-3xl font-bold text-black leading-6 md:leading-8">
+                <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2 md:mb-3">Consultation</p>
+                <h3 className="text-xl md:text-3xl font-bold text-ink-900 leading-6 md:leading-8">
                   Dental
                   <br />
                   Restoration
@@ -415,7 +415,7 @@ export default function Home() {
               </div>
               <Link
                 href="/book"
-                className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
+                className="px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold hover:scale-105 hover:bg-peach-dark transition-transform"
               >
                 Book Online
               </Link>
@@ -429,15 +429,15 @@ export default function Home() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={SECTION3_BG} alt="Smiling patient" className="w-full h-full object-cover" />
             <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
-              <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
-                <h4 className="text-lg md:text-2xl font-bold text-black leading-5 md:leading-7">
+              <div className="flex-1 bg-cream rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">
+                <h4 className="text-lg md:text-2xl font-bold text-ink-900 leading-5 md:leading-7">
                   The Process
                   <br />
                   of Installing
                   <br />
                   Implants
                 </h4>
-                <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center">
+                <span className="self-end w-9 h-9 md:w-12 md:h-12 rounded-full border border-ink-900 flex items-center justify-center">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
                     <path
                       d={arrowIconPath}

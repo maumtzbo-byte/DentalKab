@@ -13,5 +13,7 @@
     font-family: "Open Sauce One", -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: #fbf5ec;
+    color: #3d2b1f;
   }
 }

@@ -33,27 +33,27 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <main className="min-h-screen w-full pt-28 md:pt-32 px-3 md:px-5 pb-1.5 md:pb-2">
       <div className="max-w-5xl mx-auto">
-        <Link href="/services" className="inline-block text-sm font-semibold text-black hover:text-neutral-500 mb-8">
+        <Link href="/services" className="inline-block text-sm font-semibold text-ink-900 hover:text-ochre mb-8">
           &larr; All Services
         </Link>
 
-        <div className="rounded-xl md:rounded-2xl bg-stone-50 p-6 md:p-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-1.5 md:mb-2">
+        <div className="rounded-xl md:rounded-2xl bg-cream-2 p-6 md:p-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-1.5 md:mb-2">
           <div>
-            <span className="text-xs md:text-sm font-semibold text-black">{service.tagline}</span>
-            <h1 className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[0.95] text-black mt-2 whitespace-pre-line">
+            <span className="text-xs md:text-sm font-semibold text-ink-900">{service.tagline}</span>
+            <h1 className="text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[0.95] text-ink-900 mt-2 whitespace-pre-line">
               {service.name}
             </h1>
           </div>
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-black flex items-center justify-center text-sm md:text-base font-semibold text-black shrink-0">
+          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-ink-900 flex items-center justify-center text-sm md:text-base font-semibold text-ink-900 shrink-0">
             {service.num}
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-1.5 md:gap-2 mb-1.5 md:mb-2">
-          <div className="rounded-xl md:rounded-2xl bg-zinc-200 p-6 md:p-10">
-            <p className="text-base md:text-xl font-semibold text-black leading-relaxed">{service.description}</p>
+          <div className="rounded-xl md:rounded-2xl bg-line p-6 md:p-10">
+            <p className="text-base md:text-xl font-semibold text-ink-900 leading-relaxed">{service.description}</p>
           </div>
-          <div className="rounded-xl md:rounded-2xl bg-black p-6 md:p-10 flex flex-col justify-between">
+          <div className="rounded-xl md:rounded-2xl bg-ink-900 p-6 md:p-10 flex flex-col justify-between">
             <p className="text-xs md:text-sm font-semibold text-white mb-4">What&apos;s included</p>
             <ul className="flex flex-col gap-3">
               {service.benefits.map((benefit) => (
@@ -65,10 +65,10 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
         </div>
 
-        <div className="rounded-xl md:rounded-2xl bg-stone-50 p-6 md:p-10 flex flex-wrap items-center justify-between gap-6 mb-8 md:mb-10">
+        <div className="rounded-xl md:rounded-2xl bg-cream-2 p-6 md:p-10 flex flex-wrap items-center justify-between gap-6 mb-8 md:mb-10">
           <div>
-            <p className="text-xs md:text-sm font-semibold text-black mb-2">Consultation</p>
-            <h3 className="text-xl md:text-3xl font-bold text-black leading-tight">
+            <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2">Consultation</p>
+            <h3 className="text-xl md:text-3xl font-bold text-ink-900 leading-tight">
               Ready to get started
               <br />
               with {service.name.replace("\n", " ")}?
@@ -76,7 +76,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
           <Link
             href="/book"
-            className="px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform inline-flex items-center gap-2"
+            className="px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold hover:scale-105 hover:bg-peach-dark transition-transform inline-flex items-center gap-2"
           >
             Book Online
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="rotate-[-45deg]">
@@ -86,13 +86,13 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
 
         <div className="pb-16 md:pb-20">
-          <h4 className="text-sm font-semibold text-black uppercase tracking-tight mb-4">Other services</h4>
+          <h4 className="text-sm font-semibold text-ink-900 uppercase tracking-tight mb-4">Other services</h4>
           <div className="flex flex-wrap gap-1.5 md:gap-2">
             {otherServices.map((s) => (
               <Link
                 key={s.slug}
                 href={`/services/${s.slug}`}
-                className="px-5 py-3 rounded-full border border-black text-sm font-semibold text-black hover:bg-black hover:text-white transition-colors duration-200"
+                className="px-5 py-3 rounded-full border border-ochre text-sm font-semibold text-ink-900 hover:bg-ink-900 hover:text-cream hover:border-ink-900 transition-colors duration-200"
               >
                 {s.name}
               </Link>

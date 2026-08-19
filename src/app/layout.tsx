@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { RootClientShell } from "@/components/root-client-shell";
 
 export const metadata: Metadata = {
-  title: "Dental Health - Quality Healthcare",
+  title: "DentalKab - Quality Healthcare",
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white">
+      <body className="bg-cream">
         <RootClientShell>
           <Navbar />
           {children}

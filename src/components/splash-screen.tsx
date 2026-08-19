@@ -22,11 +22,11 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-white flex items-end justify-start transition-opacity duration-700 ${
+      className={`fixed inset-0 z-[100] bg-cream flex items-end justify-start transition-opacity duration-700 ${
         exiting ? "opacity-0" : "opacity-100"
       }`}
     >
-      <span className="text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none text-black">
+      <span className="text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none text-ink-900">
         {count}
       </span>
     </div>
