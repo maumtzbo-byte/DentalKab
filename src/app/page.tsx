@@ -333,10 +333,10 @@ export default function Home() {
             imageWidth={s2ImageWidth}
             focalX={s2FocalX}
             cardRef={setCardRef(section2CardRefs, 3)}
-            className="col-span-1 md:col-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[200px] md:min-h-0"
+            className="col-span-1 md:col-span-2 rounded-xl md:rounded-2xl overflow-hidden relative min-h-[340px] md:min-h-0"
             style={s2Reveal.getAnimStyle(3)}
           >
-            <div className="absolute inset-0 z-10 grid grid-cols-2 md:flex md:flex-nowrap gap-1.5 md:gap-2 p-2 md:p-3 overflow-hidden">
+            <div className="absolute inset-0 z-10 grid grid-cols-2 auto-rows-fr md:flex md:flex-nowrap gap-1.5 md:gap-2 p-2 md:p-3 overflow-hidden">
               {serviceCards.map((svc) => (
                 <Link
                   key={svc.slug}
