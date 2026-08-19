@@ -9,55 +9,68 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "dental-veneers",
-    name: "Carillas Dentales",
+    slug: "endodoncia",
+    name: "Endodoncia",
     num: "01",
-    tagline: "Láminas delgadas y personalizadas para una sonrisa perfecta",
+    tagline: "Trata la infección desde la raíz y salva tu diente natural",
     description:
-      "Las carillas corrigen astillas, espacios y manchas en tan solo dos visitas, dándote una sonrisa de apariencia natural que dura años.",
+      "La endodoncia elimina el tejido dañado o infectado dentro del diente, aliviando el dolor y evitando la extracción, para que conserves tu diente natural por más tiempo.",
     benefits: [
-      "Tono personalizado para igualar tus dientes naturales",
-      "Corrige astillas, espacios y bordes desiguales",
-      "Resistentes a manchas y duraderas",
+      "Elimina el dolor causado por infección o inflamación",
+      "Evita la pérdida del diente natural",
+      "Procedimiento seguro con anestesia local",
     ],
   },
   {
-    slug: "dental-crowns",
-    name: "Coronas Dentales",
+    slug: "ortodoncia",
+    name: "Ortodoncia",
     num: "02",
-    tagline: "Devuelve fuerza a los dientes dañados",
+    tagline: "Alinea tu sonrisa con brackets o alineadores",
     description:
-      "Una corona cubre un diente debilitado o muy dañado, restaurando su forma, fuerza y función mientras se integra con tu mordida.",
+      "Corregimos la posición de tus dientes y tu mordida con tratamientos de ortodoncia personalizados, mejorando tanto la función como la estética de tu sonrisa.",
     benefits: [
-      "Protege el diente después de un tratamiento de conducto",
-      "Restaura la fuerza completa de masticación",
-      "Igualada al color natural de tu diente",
+      "Corrige dientes chuecos y problemas de mordida",
+      "Opciones con brackets tradicionales o alineadores",
+      "Planes de tratamiento personalizados",
     ],
   },
   {
-    slug: "teeth-whitening",
-    name: "Blanqueamiento Dental",
+    slug: "ortodoncia-pediatrica",
+    name: "Ortodoncia Pediátrica",
     num: "03",
-    tagline: "Una sonrisa más brillante en una sola visita",
+    tagline: "Cuidado ortodóntico temprano para los más pequeños",
     description:
-      "Nuestro blanqueamiento en consultorio elimina años de manchas de forma segura, con un kit para casa que mantiene tus resultados.",
+      "Detectamos y corregimos problemas de alineación y crecimiento dental desde temprana edad, guiando el desarrollo de una sonrisa sana en niños y adolescentes.",
+    benefits: [
+      "Detección temprana de problemas de mordida",
+      "Guía el crecimiento correcto de la mandíbula",
+      "Ambiente amigable pensado para niños",
+    ],
+  },
+  {
+    slug: "cirugia-maxilofacial",
+    name: "Cirugía Maxilofacial",
+    num: "04",
+    tagline: "Atención especializada para casos complejos",
+    description:
+      "Realizamos procedimientos quirúrgicos especializados para tratar afecciones de los dientes, la mandíbula y los tejidos faciales, con la más alta seguridad y experiencia.",
+    benefits: [
+      "Extracción de terceros molares e implantes complejos",
+      "Tratamiento de traumatismos y lesiones faciales",
+      "Equipo especializado y anestesia segura",
+    ],
+  },
+  {
+    slug: "blanqueamientos",
+    name: "Blanqueamientos",
+    num: "05",
+    tagline: "Una sonrisa más blanca en una sola visita",
+    description:
+      "Nuestro blanqueamiento dental elimina manchas y aclara el color de tus dientes de forma segura, con resultados visibles desde la primera sesión.",
     benefits: [
       "Resultados visibles en una sola cita",
       "Seguro para el esmalte al realizarse profesionalmente",
-      "Incluye kit para casa para retoques",
-    ],
-  },
-  {
-    slug: "dental-implants",
-    name: "Implantes Dentales",
-    num: "04",
-    tagline: "Recupera los dientes perdidos, de forma permanente",
-    description:
-      "Los implantes reemplazan dientes perdidos desde la raíz, dándote un resultado permanente y de sensación natural respaldado por planeación digital.",
-    benefits: [
-      "Funciona y se siente como un diente natural",
-      "Previene la pérdida ósea por dientes faltantes",
-      "Planeado digitalmente para un ajuste preciso",
+      "Kit de mantenimiento disponible para casa",
     ],
   },
 ];

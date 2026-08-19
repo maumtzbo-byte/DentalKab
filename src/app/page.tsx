@@ -22,10 +22,11 @@ const SECTION3_BG =
 const featureBars = ["Odontología Avanzada", "Equipo de Alta Calidad", "Personal Amable"];
 
 const serviceCards: { name: string; num: string | null; active: boolean; slug: string }[] = [
-  { name: "Carillas\nDentales", num: "01", active: true, slug: "dental-veneers" },
-  { name: "Coronas\nDentales", num: "02", active: false, slug: "dental-crowns" },
-  { name: "Blanqueamiento\nDental", num: "03", active: false, slug: "teeth-whitening" },
-  { name: "Implantes\nDentales", num: null, active: false, slug: "dental-implants" },
+  { name: "Endodoncia", num: "01", active: true, slug: "endodoncia" },
+  { name: "Ortodoncia", num: "02", active: false, slug: "ortodoncia" },
+  { name: "Ortodoncia\nPediátrica", num: "03", active: false, slug: "ortodoncia-pediatrica" },
+  { name: "Cirugía\nMaxilofacial", num: "04", active: false, slug: "cirugia-maxilofacial" },
+  { name: "Blanqueo\nDental", num: null, active: false, slug: "blanqueamientos" },
 ];
 
 const arrowIconPath = "M1 7h12m0 0L8 2m5 5L8 12";
@@ -345,7 +346,7 @@ export default function Home() {
                   }`}
                 >
                   <h3
-                    className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line ${
+                    className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line break-words ${
                       svc.active ? "text-ink-900" : "text-white"
                     }`}
                   >
