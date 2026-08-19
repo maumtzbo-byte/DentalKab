@@ -271,7 +271,7 @@ export default function Home() {
           section2Ref.current = el;
           s2Reveal.containerRef.current = el;
         }}
-        className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
+        className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col bg-coffee pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
       >
         <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 grid-rows-[auto_auto_auto_auto] md:grid-rows-[1fr_1fr_0.8fr] gap-1.5 md:gap-2">
           <MaskedCard

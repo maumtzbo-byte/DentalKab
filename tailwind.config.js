@@ -17,6 +17,10 @@ module.exports = {
           DEFAULT: "#A8703F",
           dark: "#7C5228",
         },
+        coffee: {
+          DEFAULT: "#5B4B3D",
+          dark: "#463A2F",
+        },
         peach: {
           DEFAULT: "#EFA671",
           dark: "#DC8A52",
