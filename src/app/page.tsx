@@ -26,7 +26,7 @@ const serviceCards: { name: string; num: string | null; active: boolean; slug: s
   { name: "Ortodoncia", num: "02", active: false, slug: "ortodoncia" },
   { name: "Ortodoncia\nPediátrica", num: "03", active: false, slug: "ortodoncia-pediatrica" },
   { name: "Cirugía\nMaxilofacial", num: "04", active: false, slug: "cirugia-maxilofacial" },
-  { name: "Blanqueo\nDental", num: null, active: false, slug: "blanqueamientos" },
+  { name: "Blanqueo\nDental", num: "05", active: false, slug: "blanqueamientos" },
 ];
 
 const arrowIconPath = "M1 7h12m0 0L8 2m5 5L8 12";
@@ -337,13 +337,13 @@ export default function Home() {
             style={s2Reveal.getAnimStyle(3)}
           >
             <div className="absolute inset-0 z-10 grid grid-cols-2 auto-rows-fr md:flex md:flex-nowrap gap-1.5 md:gap-2 p-2 md:p-3 overflow-hidden">
-              {serviceCards.map((svc) => (
+              {serviceCards.map((svc, i) => (
                 <Link
                   key={svc.slug}
                   href={`/services/${svc.slug}`}
                   className={`md:flex-1 min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
-                    svc.active ? "bg-cream/90 backdrop-blur-md" : "bg-white/20 backdrop-blur-xl"
-                  }`}
+                    i === serviceCards.length - 1 && serviceCards.length % 2 === 1 ? "col-span-2 md:col-span-1" : ""
+                  } ${svc.active ? "bg-cream/90 backdrop-blur-md" : "bg-white/20 backdrop-blur-xl"}`}
                 >
                   <h3
                     className={`text-xl md:text-4xl font-bold leading-[1.05] whitespace-pre-line break-words ${
