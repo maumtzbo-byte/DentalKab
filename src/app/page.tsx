@@ -304,7 +304,7 @@ export default function Home() {
               <br />
               llámanos y pregunta por nuestro cambio de sonrisa.
             </p>
-            <button className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold z-10 hover:scale-105 hover:bg-peach-dark transition-transform">
+            <button className="absolute bottom-4 left-5 md:bottom-6 md:left-7 px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold z-10 hover:scale-105 hover:bg-peach-dark transition-transform">
               Llámanos
             </button>
           </MaskedCard>
