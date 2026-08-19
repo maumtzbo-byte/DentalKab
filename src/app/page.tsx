@@ -10,12 +10,6 @@ const HERO_IMAGE =
 const SECTION2_IMAGE =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114219_414dfe80-f15c-4e25-bf52-b13721f4bd88.png&w=1280&q=85";
 
-const SECTION3_IMG1 =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_115253_c19ab167-8dd5-48b4-967d-b9f0d9d6e8fb.png&w=1280&q=85";
-
-const SECTION3_IMG2 =
-  "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_115237_fc519057-6e87-4abf-999a-9610b8b085b4.png&w=1280&q=85";
-
 const SECTION3_BG =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_114355_752ba9e6-0942-4abb-9047-5d9bb16632e9.png&w=1280&q=85";
 
@@ -375,57 +369,10 @@ export default function Home() {
         }}
         className="min-h-screen md:h-screen w-full overflow-hidden flex flex-col pt-1.5 md:pt-2 px-3 md:px-5 pb-1.5 md:pb-2 gap-1.5 md:gap-2"
       >
-        <div className="flex-1 min-h-0 grid grid-cols-1 md:grid-cols-2 gap-1.5 md:gap-2">
-          <div className="flex flex-col gap-1.5 md:gap-2">
-            <div
-              className="rounded-xl md:rounded-2xl bg-cream-2 p-5 md:p-7 flex flex-col justify-between flex-[1.2] min-h-[180px] md:min-h-0"
-              style={s3Reveal.getAnimStyle(0)}
-            >
-              <h2 className="text-[clamp(3rem,7vw,6.5rem)] font-bold leading-[0.95] text-ink-900">
-                Implantes
-                <br />
-                Dentales
-              </h2>
-              <p className="text-xs md:text-sm font-semibold text-ink-900">Recupera los dientes perdidos</p>
-            </div>
-
-            <div className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0" style={s3Reveal.getAnimStyle(1)}>
-              <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={SECTION3_IMG1} alt="Procedimiento de implante dental" className="w-full h-full object-cover" />
-              </div>
-              <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={SECTION3_IMG2} alt="Restauración dental" className="w-full h-full object-cover" />
-              </div>
-            </div>
-
-            <div
-              className="rounded-xl md:rounded-2xl bg-line p-5 md:p-7 flex items-end justify-between flex-[0.8] min-h-[160px] md:min-h-0"
-              style={s3Reveal.getAnimStyle(2)}
-            >
-              <div>
-                <p className="text-xs md:text-sm font-semibold text-ink-900 mb-2 md:mb-3">Consulta</p>
-                <h3 className="text-xl md:text-3xl font-bold text-ink-900 leading-6 md:leading-8">
-                  Servicios de
-                  <br />
-                  Restauración
-                  <br />
-                  Dental
-                </h3>
-              </div>
-              <Link
-                href="/book"
-                className="px-5 py-3 md:px-8 md:py-5 bg-peach rounded-full text-ink-900 text-base md:text-xl font-bold hover:scale-105 hover:bg-peach-dark transition-transform"
-              >
-                Reservar
-              </Link>
-            </div>
-          </div>
-
+        <div className="flex-1 min-h-0">
           <div
-            className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[350px] md:min-h-0"
-            style={s3Reveal.getAnimStyle(3)}
+            className="rounded-xl md:rounded-2xl overflow-hidden relative h-full min-h-[350px] md:min-h-0"
+            style={s3Reveal.getAnimStyle(0)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={SECTION3_BG} alt="Paciente sonriendo" className="w-full h-full object-cover" />
