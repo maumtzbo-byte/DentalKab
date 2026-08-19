@@ -1,9 +1,12 @@
 # dependencies
 /node_modules
 
-# build output
-/dist
-*.tsbuildinfo
+# next.js
+/.next/
+/out/
+
+# production
+/build
 
 # testing
 /coverage
@@ -21,6 +24,13 @@ yarn-error.log*
 # env files
 .env*
 !.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
 # editors
 .vscode/*

@@ -1,9 +1,8 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import ServiceDetail from "./pages/ServiceDetail";
-import Book from "./pages/Book";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
@@ -13,48 +12,9 @@ const NAV_LINKS: { label: string; to: string }[] = [
   { label: "Contact", to: "/#contact" },
 ];
 
-// ---------------------------------------------------------------------------
-// Splash screen
-// ---------------------------------------------------------------------------
-
-function SplashScreen({ onComplete }: { onComplete: () => void }) {
-  const [count, setCount] = useState(0);
-  const [exiting, setExiting] = useState(false);
-
-  useEffect(() => {
-    let current = 0;
-    const interval = window.setInterval(() => {
-      current += 1;
-      setCount(current);
-      if (current >= 100) {
-        window.clearInterval(interval);
-        window.setTimeout(() => setExiting(true), 200);
-        window.setTimeout(() => onComplete(), 900);
-      }
-    }, 20);
-    return () => window.clearInterval(interval);
-  }, [onComplete]);
-
-  return (
-    <div
-      className={`fixed inset-0 z-[100] bg-white flex items-end justify-start transition-opacity duration-700 ${
-        exiting ? "opacity-0" : "opacity-100"
-      }`}
-    >
-      <span className="text-7xl md:text-9xl font-bold tabular-nums p-6 md:p-10 leading-none text-black">
-        {count}
-      </span>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Navbar
-// ---------------------------------------------------------------------------
-
-function Navbar() {
+export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -65,12 +25,12 @@ function Navbar() {
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-md">
-        <Link to="/" className="flex flex-col">
+        <Link href="/" className="flex flex-col">
           <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none">Dental</span>
           <span className="text-xl md:text-2xl font-extrabold uppercase tracking-tight leading-none -mt-1.5 md:-mt-2">
             Health
@@ -131,7 +91,7 @@ function Navbar() {
             {NAV_LINKS.map((link, i) => (
               <Link
                 key={link.label}
-                to={link.to}
+                href={link.to}
                 className={`text-4xl font-bold text-black hover:text-neutral-500 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${
                   menuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
                 }`}
@@ -150,7 +110,7 @@ function Navbar() {
             >
               <p className="text-sm font-semibold text-black mb-4">Dental Emergency</p>
               <Link
-                to="/book"
+                href="/book"
                 className="block w-full text-center px-6 py-4 bg-black rounded-full text-white text-sm font-semibold hover:bg-neutral-800 transition-colors duration-200"
               >
                 Book Appointment
@@ -160,26 +120,5 @@ function Navbar() {
         </div>
       </div>
     </>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// App
-// ---------------------------------------------------------------------------
-
-export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
-
-  return (
-    <div className="bg-white">
-      {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/services/:slug" element={<ServiceDetail />} />
-        <Route path="/book" element={<Book />} />
-      </Routes>
-    </div>
   );
 }

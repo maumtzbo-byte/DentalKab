@@ -1,10 +1,12 @@
+"use client";
+
 import { useState, type FormEvent } from "react";
-import { services } from "../data/services";
-import { supabase } from "../lib/supabase";
+import { services } from "@/data/services";
+import { supabase } from "@/lib/supabase";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function Book() {
+export default function BookPage() {
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

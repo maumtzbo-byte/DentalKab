@@ -1,6 +1,8 @@
+"use client";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const HERO_IMAGE =
   "https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260624_113640_ccf3cf97-d447-425b-a134-d7b09fc743fc.png&w=1280&q=85";
@@ -33,10 +35,11 @@ const arrowIconPath = "M1 7h12m0 0L8 2m5 5L8 12";
 // ---------------------------------------------------------------------------
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 767px)").matches);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
@@ -336,7 +339,7 @@ export default function Home() {
               {serviceCards.map((svc) => (
                 <Link
                   key={svc.slug}
-                  to={`/services/${svc.slug}`}
+                  href={`/services/${svc.slug}`}
                   className={`flex-1 min-w-[calc(50%-4px)] md:min-w-0 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between ${
                     svc.active ? "bg-white/90 backdrop-blur-md" : "bg-white/20 backdrop-blur-xl"
                   }`}
@@ -387,9 +390,11 @@ export default function Home() {
 
             <div className="flex gap-1.5 md:gap-2 flex-1 min-h-[140px] md:min-h-0" style={s3Reveal.getAnimStyle(1)}>
               <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={SECTION3_IMG1} alt="Dental implant procedure" className="w-full h-full object-cover" />
               </div>
               <div className="flex-1 rounded-xl md:rounded-2xl overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={SECTION3_IMG2} alt="Dental restoration" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -409,7 +414,7 @@ export default function Home() {
                 </h3>
               </div>
               <Link
-                to="/book"
+                href="/book"
                 className="px-5 py-3 md:px-8 md:py-5 bg-white rounded-full text-black text-base md:text-xl font-bold hover:scale-105 transition-transform"
               >
                 Book Online
@@ -421,6 +426,7 @@ export default function Home() {
             className="rounded-xl md:rounded-2xl overflow-hidden relative min-h-[350px] md:min-h-0"
             style={s3Reveal.getAnimStyle(3)}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={SECTION3_BG} alt="Smiling patient" className="w-full h-full object-cover" />
             <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex gap-1.5 md:gap-2">
               <div className="flex-1 bg-white rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col justify-between h-36 md:h-52">

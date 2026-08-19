@@ -1,7 +1,12 @@
-import { Link } from "react-router-dom";
-import { services } from "../data/services";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { services } from "@/data/services";
 
-export default function Services() {
+export const metadata: Metadata = {
+  title: "Services",
+};
+
+export default function ServicesPage() {
   return (
     <main className="min-h-screen w-full pt-28 md:pt-32 px-3 md:px-5 pb-1.5 md:pb-2">
       <div className="max-w-5xl mx-auto">
@@ -11,7 +16,7 @@ export default function Services() {
           {services.map((service, i) => (
             <Link
               key={service.slug}
-              to={`/services/${service.slug}`}
+              href={`/services/${service.slug}`}
               className={`rounded-xl md:rounded-2xl p-6 md:p-10 flex flex-col justify-between min-h-[220px] md:min-h-[260px] ${
                 i % 2 === 0 ? "bg-stone-50" : "bg-zinc-200"
               } hover:opacity-80 transition-opacity`}

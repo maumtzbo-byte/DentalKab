@@ -1,14 +1,31 @@
-import { Link, Navigate, useParams } from "react-router-dom";
-import { getServiceBySlug, services } from "../data/services";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getServiceBySlug, services } from "@/data/services";
 
 const arrowIconPath = "M1 7h12m0 0L8 2m5 5L8 12";
 
-export default function ServiceDetail() {
-  const { slug } = useParams<{ slug: string }>();
-  const service = slug ? getServiceBySlug(slug) : undefined;
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export function generateStaticParams() {
+  return services.map((service) => ({ slug: service.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
+  if (!service) return {};
+  return { title: service.name.replace("\n", " ") };
+}
+
+export default async function ServiceDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
 
   if (!service) {
-    return <Navigate to="/services" replace />;
+    notFound();
   }
 
   const otherServices = services.filter((s) => s.slug !== service.slug);
@@ -16,7 +33,7 @@ export default function ServiceDetail() {
   return (
     <main className="min-h-screen w-full pt-28 md:pt-32 px-3 md:px-5 pb-1.5 md:pb-2">
       <div className="max-w-5xl mx-auto">
-        <Link to="/services" className="inline-block text-sm font-semibold text-black hover:text-neutral-500 mb-8">
+        <Link href="/services" className="inline-block text-sm font-semibold text-black hover:text-neutral-500 mb-8">
           &larr; All Services
         </Link>
 
@@ -58,7 +75,7 @@ export default function ServiceDetail() {
             </h3>
           </div>
           <Link
-            to="/book"
+            href="/book"
             className="px-5 py-3 md:px-8 md:py-5 bg-black rounded-full text-white text-base md:text-xl font-bold hover:scale-105 transition-transform inline-flex items-center gap-2"
           >
             Book Online
@@ -74,7 +91,7 @@ export default function ServiceDetail() {
             {otherServices.map((s) => (
               <Link
                 key={s.slug}
-                to={`/services/${s.slug}`}
+                href={`/services/${s.slug}`}
                 className="px-5 py-3 rounded-full border border-black text-sm font-semibold text-black hover:bg-black hover:text-white transition-colors duration-200"
               >
                 {s.name}
